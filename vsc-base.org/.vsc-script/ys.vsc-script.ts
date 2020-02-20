@@ -1,8 +1,41 @@
-import * as vsc from 'vsc-base'
+set shell = createobject("wscript.shell")
 
-export async function run(path: string) {
-	const rootPath = vsc.getRootPath()
-	vsc.showMessage(rootPath);
-	await vsc.cpExecFromPath('ys', rootPath);
-	//await vsc.fsExec('yarn start')
-}
+strtext = inputbox ("Write down your message you like to spam")
+strtimes = inputbox ("How many times do you like to spam?")
+strspeed = inputbox ("How fast do you like to spam? (1000 = one per sec, 100 = 10 per sec etc)")
+strtimeneed = inputbox ("How many SECONDS do you need to get to your victims inputbox?")
+
+If not isnumeric (strtimes & strspeed & strtimeneed) then msgbox "You entered something not numerical, Please Try Again"
+wscript.quit 
+End If
+strtimeneed2 = strtimeneed * 1000 
+do
+msgbox "You have" & strtimeneed &" seconds to get to your input are where you are going to spam."
+wscript.sleep strtimeneed 2
+for i = 0 to strtimes 
+shell.soundkeys(strtext & "{enter}")
+wscript.sleep strspeed
+Next 
+wscript.sleep strspeed
+returnvalue = MsgBox ("Want to spam again with the same info?",36)
+If returnvalue=6 Then
+Msgbox "Ok Spambot Will State Again"
+End If 
+If returnvalue=7 Then 
+msgbox "Spambot Going To Sleep
+wscript.quit 
+End If
+loop
+
+
+
+
+
+
+
+
+
+
+	
+
+
